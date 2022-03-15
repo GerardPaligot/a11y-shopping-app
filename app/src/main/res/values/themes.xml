@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.A11yshoppingapp" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <item name="isLightTheme">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:background">@color/grey50</item>
+    </style>
+</resources>
