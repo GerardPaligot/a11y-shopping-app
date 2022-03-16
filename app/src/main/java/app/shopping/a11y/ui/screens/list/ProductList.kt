@@ -7,11 +7,13 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -25,12 +27,16 @@ import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 
 @ExperimentalAnimationApi
 @Composable
-fun ProductListVM(modifier: Modifier = Modifier) {
+fun ProductListVM(
+    modifier: Modifier = Modifier,
+    onSettingsClicked: () -> Unit
+) {
     val viewModel = viewModel<ProductListViewModel>()
     val products = viewModel.uiState.collectAsState()
     ProductList(
         products = products.value.products,
         modifier = modifier,
+        onSettingsClicked = onSettingsClicked,
         onShoppingCartClicked = {},
         onRemoveQuantityClicked = {
             viewModel.removeQuantity(it)
@@ -46,6 +52,7 @@ fun ProductListVM(modifier: Modifier = Modifier) {
 fun ProductList(
     products: List<ProductUi>,
     modifier: Modifier = Modifier,
+    onSettingsClicked: () -> Unit,
     onShoppingCartClicked: () -> Unit,
     onRemoveQuantityClicked: (productId: String) -> Unit,
     onAddQuantityClicked: (productId: String) -> Unit
@@ -58,7 +65,12 @@ fun ProductList(
             TopAppBar(
                 title = { Text(text = "Céréales") },
                 backgroundColor = MaterialTheme.colors.surface,
-                contentColor = MaterialTheme.colors.onSurface
+                contentColor = MaterialTheme.colors.onSurface,
+                actions = {
+                    IconButton(onClick = onSettingsClicked) {
+                        Icon(imageVector = Icons.Default.Settings, contentDescription = null)
+                    }
+                }
             )
         },
         floatingActionButton = {
@@ -98,6 +110,7 @@ fun ProductListPreview() {
     A11yShoppingAppTheme {
         ProductList(
             products = ProductUi.fakes,
+            onSettingsClicked = { /*TODO*/ },
             onShoppingCartClicked = { /*TODO*/ },
             onRemoveQuantityClicked = { /*TODO*/ },
             onAddQuantityClicked = { /*TODO*/ }
