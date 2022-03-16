@@ -58,9 +58,8 @@ fun QuantitySelection(
     textStyle: TextStyle = MaterialTheme.typography.body2
 ) {
     val emptyQuantity = quantity == 0
-    val addIcon = when {
-        emptyQuantity -> Icons.Default.ShoppingCart
-        quantity == maxQuantity -> Icons.Default.ProductionQuantityLimits
+    val addIcon = when (quantity) {
+        maxQuantity -> Icons.Default.ProductionQuantityLimits
         else -> Icons.Default.Add
     }
     Row(
