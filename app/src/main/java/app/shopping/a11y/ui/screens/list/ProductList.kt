@@ -77,6 +77,14 @@ fun ProductList(
                 backgroundColor = MaterialTheme.colors.surface,
                 contentColor = MaterialTheme.colors.onSurface,
                 actions = {
+                    if (isAccessibilityEnabled) {
+                        IconButton(onClick = onShoppingCartClicked) {
+                            Icon(
+                                imageVector = Icons.Default.ShoppingCart,
+                                contentDescription = cdOpenBasket
+                            )
+                        }
+                    }
                     IconButton(onClick = onSettingsClicked) {
                         Icon(
                             imageVector = Icons.Default.Settings,
@@ -131,6 +139,7 @@ fun ProductListPreview() {
     A11yShoppingAppTheme {
         ProductList(
             products = ProductUi.fake,
+            isAccessibilityEnabled = true,
             onSettingsClicked = { /*TODO*/ },
             onShoppingCartClicked = { /*TODO*/ },
             onRemoveQuantityClicked = { /*TODO*/ },
