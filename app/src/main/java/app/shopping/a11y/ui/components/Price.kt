@@ -10,6 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -54,26 +57,35 @@ internal fun PriceText(
 ) {
     val (dozen, decimals) = price.split(",")
     Row(
-        modifier = modifier,
+        modifier = modifier.semantics {
+            contentDescription = if(textDecoration == TextDecoration.LineThrough) {
+                "prix d'origine: $price euros"
+            } else {
+                "$price euros"
+            }
+        },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = dozen,
             style = dozenStyle,
             color = color,
-            textDecoration = textDecoration
+            textDecoration = textDecoration,
+            modifier = Modifier.clearAndSetSemantics { }
         )
         Column {
             Text(
                 text = decimals,
                 style = decimalStyle,
                 color = color,
-                textDecoration = textDecoration
+                textDecoration = textDecoration,
+                modifier = Modifier.clearAndSetSemantics { }
             )
             Text(
                 text = "€",
                 style = decimalStyle,
-                color = color
+                color = color,
+                modifier = Modifier.clearAndSetSemantics { }
             )
         }
     }
