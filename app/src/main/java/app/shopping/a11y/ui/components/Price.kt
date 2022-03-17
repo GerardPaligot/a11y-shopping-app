@@ -52,7 +52,7 @@ internal fun PriceText(
         alpha = if (textDecoration == null) 1f else .7f
     )
 ) {
-    val (dozen, decimals) = price.split(".")
+    val (dozen, decimals) = price.split(",")
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
