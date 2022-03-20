@@ -18,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,7 +53,9 @@ fun ReadOnlyRating(
     val cdProductComments = stringResource(id = R.string.a11y_product_comments, nbComments)
     val rounded = number.rounded()
     Row(
-        modifier = modifier.padding(sizes.contentPadding),
+        modifier = modifier
+            .padding(sizes.contentPadding)
+            .semantics(mergeDescendants = true) {},
         horizontalArrangement = Arrangement.spacedBy(sizes.spaceBetween),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -66,12 +71,18 @@ fun ReadOnlyRating(
         Text(
             text = "$rounded/$maxValue",
             style = sizes.textStyle.copy(fontWeight = FontWeight.Bold),
-            color = colors.noteColor
+            color = colors.noteColor,
+            modifier = Modifier.semantics {
+                text = AnnotatedString(cdProductRating)
+            }
         )
         Text(
             text = "($nbComments)",
             style = sizes.textStyle,
-            color = colors.commentsColor
+            color = colors.commentsColor,
+            modifier = Modifier.semantics {
+                text = AnnotatedString(cdProductComments)
+            }
         )
     }
 }
