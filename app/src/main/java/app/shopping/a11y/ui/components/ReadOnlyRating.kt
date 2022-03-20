@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,7 +48,13 @@ fun ReadOnlyRating(
 ) {
     val rounded = number.rounded()
     Row(
-        modifier = modifier.padding(sizes.contentPadding),
+        modifier = modifier
+            .padding(sizes.contentPadding)
+            .semantics {
+                contentDescription = "Noté à %s sur %s - %s commentaires".format(
+                    number, maxValue, nbComments
+                )
+            },
         horizontalArrangement = Arrangement.spacedBy(sizes.spaceBetween),
         verticalAlignment = Alignment.CenterVertically
     ) {
