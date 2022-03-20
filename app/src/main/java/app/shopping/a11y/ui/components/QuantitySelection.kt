@@ -24,7 +24,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ProductionQuantityLimits
 import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,6 +34,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,7 +66,6 @@ fun QuantitySelection(
     val actionRemove = stringResource(id = R.string.a11y_action_quantity_remove)
     val stateMaxReached = stringResource(id = R.string.a11y_quantity_maximum)
 
-    val emptyQuantity = quantity == 0
     val addIcon = when (quantity) {
         maxQuantity -> Icons.Default.ProductionQuantityLimits
         else -> Icons.Default.Add
@@ -74,18 +75,25 @@ fun QuantitySelection(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        AnimatedVisibility(visible = !emptyQuantity) {
+        AnimatedVisibility(visible = quantity != 0) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 QuantityIconButton(
                     imageVector = Icons.Default.Remove,
-                    contentDescription = null,
+                    contentDescription = cdActionRemove,
                     onClick = onRemoveClicked,
                     colors = buttonColors,
                     shape = buttonShape,
-                    enabled = quantity > 0
+                    enabled = quantity > 0,
+                    modifier = Modifier.semantics {
+                        stateDescription = "$quantity"
+                        onClick(actionRemove) {
+                            onRemoveClicked()
+                            return@onClick quantity < maxQuantity
+                        }
+                    }
                 )
                 QuantityText(
                     quantity = quantity,
@@ -95,11 +103,22 @@ fun QuantitySelection(
         }
         QuantityIconButton(
             imageVector = addIcon,
-            contentDescription = null,
+            contentDescription = cdActionAdd,
             onClick = onAddClicked,
             colors = buttonColors,
             shape = buttonShape,
-            enabled = quantity < maxQuantity
+            enabled = quantity < maxQuantity,
+            modifier = Modifier.semantics {
+                stateDescription = if(quantity == maxQuantity) {
+                    "$quantity - $stateMaxReached"
+                } else {
+                    "$quantity"
+                }
+                onClick(actionAdd) {
+                    onAddClicked()
+                    return@onClick quantity < maxQuantity
+                }
+            }
         )
     }
 }
