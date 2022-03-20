@@ -39,7 +39,7 @@ fun ProductItem(
     ) {
         AsyncImage(
             model = product.url,
-            contentDescription = "Product Image",
+            contentDescription = null,
             placeholder = painterResource(id = R.drawable.placeholder),
             modifier = Modifier.size(80.dp)
         )
