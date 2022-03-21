@@ -78,7 +78,10 @@ fun ProductList(
                 contentColor = MaterialTheme.colors.onSurface,
                 actions = {
                     IconButton(onClick = onSettingsClicked) {
-                        Icon(imageVector = Icons.Default.Settings, contentDescription = null)
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = cdOpenSettings
+                        )
                     }
                 },
                 navigationIcon = {
