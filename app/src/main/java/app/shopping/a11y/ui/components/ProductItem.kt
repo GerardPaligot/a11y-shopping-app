@@ -2,7 +2,6 @@ package app.shopping.a11y.ui.components
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import app.shopping.a11y.R
@@ -44,12 +44,13 @@ fun ProductItem(
             modifier = Modifier.size(80.dp)
         )
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(text = product.name)
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.CenterEnd
-            ) {
-                ReadOnlyRating(number = product.rating, nbComments = product.nbComments)
+            Column(modifier = Modifier.semantics(mergeDescendants = true) { }) {
+                Text(text = product.name)
+                ReadOnlyRating(
+                    number = product.rating,
+                    nbComments = product.nbComments,
+                    modifier = Modifier.align(Alignment.End)
+                )
             }
             Row(
                 modifier = Modifier.fillMaxWidth()
