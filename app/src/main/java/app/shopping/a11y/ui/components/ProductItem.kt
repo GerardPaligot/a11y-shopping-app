@@ -46,12 +46,11 @@ fun ProductItem(
         )
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(text = product.name)
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.CenterEnd
-            ) {
-                ReadOnlyRating(number = product.rating, nbComments = product.nbComments)
-            }
+            ReadOnlyRating(
+                number = product.rating,
+                nbComments = product.nbComments,
+                modifier = Modifier.align(Alignment.End)
+            )
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
