@@ -1,6 +1,7 @@
 package app.shopping.a11y.ui.components
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,7 +40,7 @@ fun ProductItem(
     ) {
         AsyncImage(
             model = product.url,
-            contentDescription = null,
+            contentDescription = "Product Image",
             placeholder = painterResource(id = R.drawable.placeholder),
             modifier = Modifier.size(80.dp)
         )

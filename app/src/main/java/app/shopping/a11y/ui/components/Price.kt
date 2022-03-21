@@ -10,9 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -27,9 +24,9 @@ fun Price(
     priceStrikeout: String? = null,
 ) {
     Row(
-        modifier = modifier.semantics(true) {},
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.Bottom,
+        verticalAlignment = Alignment.Bottom
     ) {
         PriceText(price = price)
         if (priceStrikeout != null) {
@@ -57,35 +54,25 @@ internal fun PriceText(
 ) {
     val (dozen, decimals) = price.split(",")
     Row(
-        modifier = modifier.semantics {
-            contentDescription = if(textDecoration == TextDecoration.LineThrough) {
-                "prix d'origine: $price euros"
-            } else {
-                "$price euros"
-            }
-        },
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = dozen,
             style = dozenStyle,
             color = color,
-            textDecoration = textDecoration,
-            modifier = Modifier.clearAndSetSemantics { }
+            textDecoration = textDecoration
         )
         Column {
             Text(
                 text = decimals,
                 style = decimalStyle,
-                color = color,
-                modifier = Modifier.clearAndSetSemantics { }
-
+                color = color
             )
             Text(
                 text = "€",
                 style = decimalStyle,
-                color = color,
-                modifier = Modifier.clearAndSetSemantics { }
+                color = color
             )
         }
     }
