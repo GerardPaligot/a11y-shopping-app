@@ -59,8 +59,8 @@ fun ProductItem(
                 QuantitySelection(
                     quantity = product.quantity,
                     maxQuantity = product.maxQuantity,
-                    removeContentDescription = null,
-                    addContentDescription = null,
+                    removeContentDescription = "Remove",
+                    addContentDescription = "Add",
                     onRemoveClicked = { onRemoveQuantityClicked(product.id) },
                     onAddClicked = { onAddQuantityClicked(product.id) },
                 )
