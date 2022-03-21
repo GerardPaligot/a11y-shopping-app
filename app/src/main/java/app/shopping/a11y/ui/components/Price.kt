@@ -27,9 +27,9 @@ fun Price(
     priceStrikeout: String? = null,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.semantics(true) {},
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.Bottom
+        verticalAlignment = Alignment.Bottom,
     ) {
         PriceText(price = price)
         if (priceStrikeout != null) {

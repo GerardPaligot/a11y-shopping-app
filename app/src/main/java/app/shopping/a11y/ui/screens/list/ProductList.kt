@@ -28,12 +28,14 @@ import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 @ExperimentalAnimationApi
 @Composable
 fun ProductListVM(
+    isAccessibilityEnabled: Boolean,
     modifier: Modifier = Modifier,
     onSettingsClicked: () -> Unit
 ) {
     val viewModel = viewModel<ProductListViewModel>()
     val products = viewModel.uiState.collectAsState()
     ProductList(
+        isAccessibilityEnabled = isAccessibilityEnabled,
         products = products.value.products,
         modifier = modifier,
         onSettingsClicked = onSettingsClicked,
@@ -50,6 +52,7 @@ fun ProductListVM(
 @ExperimentalAnimationApi
 @Composable
 fun ProductList(
+    isAccessibilityEnabled: Boolean,
     products: List<ProductUi>,
     modifier: Modifier = Modifier,
     onSettingsClicked: () -> Unit,
@@ -67,6 +70,11 @@ fun ProductList(
                 backgroundColor = MaterialTheme.colors.surface,
                 contentColor = MaterialTheme.colors.onSurface,
                 actions = {
+                    if (isAccessibilityEnabled) {
+                        IconButton(onClick = onShoppingCartClicked) {
+                            Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null)
+                        }
+                    }
                     IconButton(onClick = onSettingsClicked) {
                         Icon(imageVector = Icons.Default.Settings, contentDescription = null)
                     }
@@ -109,6 +117,7 @@ fun ProductList(
 fun ProductListPreview() {
     A11yShoppingAppTheme {
         ProductList(
+            isAccessibilityEnabled = true,
             products = ProductUi.fakes,
             onSettingsClicked = { /*TODO*/ },
             onShoppingCartClicked = { /*TODO*/ },
