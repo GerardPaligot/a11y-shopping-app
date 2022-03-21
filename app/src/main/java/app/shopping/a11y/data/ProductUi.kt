@@ -21,8 +21,8 @@ data class ProductUi(
                 nbComments = 1,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5010477348678",
@@ -32,7 +32,7 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 9,
-                price = "4.99",
+                price = "4,99",
                 priceStrikeout = null
             ),
             ProductUi(
@@ -43,7 +43,7 @@ data class ProductUi(
                 nbComments = 4,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "3.99",
+                price = "3,99",
                 priceStrikeout = null
             ),
             ProductUi(
@@ -54,8 +54,8 @@ data class ProductUi(
                 nbComments = 42,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "2.99",
-                priceStrikeout = "3.99"
+                price = "2,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5010029220773",
@@ -65,8 +65,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "4008713756661",
@@ -76,8 +76,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "20003166",
@@ -87,8 +87,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5010477354051",
@@ -98,8 +98,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "3229820116716",
@@ -109,8 +109,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "7613035144699",
@@ -120,8 +120,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5902884463139",
@@ -131,8 +131,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "3168930003632",
@@ -142,8 +142,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "3229820794549",
@@ -153,8 +153,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "3229820794556",
@@ -164,8 +164,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "40897677",
@@ -175,8 +175,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "7613036668910",
@@ -186,8 +186,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "3229820796451",
@@ -197,8 +197,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5010477356277",
@@ -208,8 +208,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5010477357335",
@@ -219,8 +219,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "3421557910203",
@@ -230,8 +230,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "3270190136835",
@@ -241,8 +241,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "20621469",
@@ -252,8 +252,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5010029201246",
@@ -263,8 +263,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             ),
             ProductUi(
                 id = "5010029000061",
@@ -274,8 +274,8 @@ data class ProductUi(
                 nbComments = 10,
                 quantity = 0,
                 maxQuantity = 5,
-                price = "1.99",
-                priceStrikeout = "3.99"
+                price = "1,99",
+                priceStrikeout = "3,99"
             )
         )
     }
