@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">a11y-shopping-app</string>
+    <string name="a11y_open_basket">Ouvrir le panier</string>
+    <string name="a11y_open_settings">Ouvrir les paramètres</string>
+    <string name="a11y_state_quantity_add">Ajouter</string>
+    <string name="a11y_state_quantity_remove">Supprimer</string>
+    <string name="a11y_state_rating">Noté à %s sur %s - %s commentaires</string>
+    <string name="a11y_state_quantity_maximum">Maximum atteint</string>
+    <string name="a11y_action_quantity_add">à ajouter</string>
+    <string name="a11y_action_quantity_remove">à supprimer</string>
+</resources>

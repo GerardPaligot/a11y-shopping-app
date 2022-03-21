@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
@@ -41,6 +42,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import app.shopping.a11y.R
 import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 
 @ExperimentalAnimationApi
@@ -60,6 +62,9 @@ fun QuantitySelection(
     buttonShape: Shape = CircleShape,
     textStyle: TextStyle = MaterialTheme.typography.body2
 ) {
+    val actionAdd = stringResource(id = R.string.a11y_action_quantity_add)
+    val actionRemove = stringResource(id = R.string.a11y_action_quantity_remove)
+    val stateMaxReached = stringResource(id = R.string.a11y_state_quantity_maximum)
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
@@ -79,7 +84,7 @@ fun QuantitySelection(
                     enabled = quantity > 0,
                     modifier = Modifier.semantics {
                         stateDescription = "$quantity"
-                        onClick("to remove") {
+                        onClick(actionRemove) {
                             onRemoveClicked()
                             return@onClick quantity < maxQuantity
                         }
@@ -103,11 +108,11 @@ fun QuantitySelection(
             enabled = quantity < maxQuantity,
             modifier = Modifier.semantics {
                 stateDescription = if(quantity == maxQuantity) {
-                    "$quantity - Maximum reached"
+                    "$quantity - $stateMaxReached"
                 } else {
                     "$quantity"
                 }
-                onClick("to add") {
+                onClick(actionAdd) {
                     onAddClicked()
                     return@onClick quantity < maxQuantity
                 }

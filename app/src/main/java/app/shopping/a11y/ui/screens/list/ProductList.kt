@@ -18,9 +18,11 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import app.shopping.a11y.R
 import app.shopping.a11y.data.ProductUi
 import app.shopping.a11y.ui.components.ProductItem
 import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
@@ -72,11 +74,17 @@ fun ProductList(
                 actions = {
                     if (isAccessibilityEnabled) {
                         IconButton(onClick = onShoppingCartClicked) {
-                            Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null)
+                            Icon(
+                                imageVector = Icons.Default.ShoppingCart, 
+                                contentDescription = stringResource(id = R.string.a11y_open_basket)
+                            )
                         }
                     }
                     IconButton(onClick = onSettingsClicked) {
-                        Icon(imageVector = Icons.Default.Settings, contentDescription = null)
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = stringResource(id = R.string.a11y_open_settings)
+                        )
                     }
                 }
             )
