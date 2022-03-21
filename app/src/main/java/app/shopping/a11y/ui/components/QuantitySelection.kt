@@ -48,8 +48,8 @@ import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 fun QuantitySelection(
     quantity: Int,
     maxQuantity: Int,
-    removeContentDescription: String?,
-    addContentDescription: String?,
+    removeContentDescription: String,
+    addContentDescription: String,
     onRemoveClicked: () -> Unit,
     onAddClicked: () -> Unit,
     modifier: Modifier = Modifier,
@@ -78,15 +78,10 @@ fun QuantitySelection(
                     shape = buttonShape,
                     enabled = quantity > 0,
                     modifier = Modifier.semantics {
-                        contentDescription = "$quantity"
+                        stateDescription = "$quantity"
                         onClick("to remove") {
                             onRemoveClicked()
                             return@onClick quantity < maxQuantity
-                        }
-                        stateDescription = if (quantity > 0) {
-                            "Enable"
-                        } else {
-                            "Disabled"
                         }
                     }
                 )
@@ -107,15 +102,14 @@ fun QuantitySelection(
             shape = buttonShape,
             enabled = quantity < maxQuantity,
             modifier = Modifier.semantics {
-                contentDescription = "$quantity"
+                stateDescription = if(quantity == maxQuantity) {
+                    "$quantity - Maximum reached"
+                } else {
+                    "$quantity"
+                }
                 onClick("to add") {
                     onAddClicked()
                     return@onClick quantity < maxQuantity
-                }
-                stateDescription = if (quantity < maxQuantity) {
-                    "Enable"
-                } else {
-                    "Disabled"
                 }
             }
         )
@@ -195,8 +189,8 @@ fun QuantitySelectionPreview() {
         QuantitySelection(
             quantity = quantityState,
             maxQuantity = 5,
-            removeContentDescription = null,
-            addContentDescription = null,
+            removeContentDescription = "Remove",
+            addContentDescription = "Add",
             onAddClicked = {
                 quantityState++
             },
