@@ -18,8 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,14 +49,14 @@ fun ReadOnlyRating(
         textStyle = MaterialTheme.typography.caption
     ),
 ) {
-    val ratingDescription = stringResource(id = R.string.a11y_state_rating)
+    val cdProductRating = stringResource(id = R.string.a11y_product_rating)
+    val cdProductComments = stringResource(id = R.string.a11y_product_comments)
+
     val rounded = number.rounded()
     Row(
         modifier = modifier
             .padding(sizes.contentPadding)
-            .semantics {
-                contentDescription = ratingDescription.format(number, maxValue, nbComments)
-            },
+            .semantics(mergeDescendants = true) {},
         horizontalArrangement = Arrangement.spacedBy(sizes.spaceBetween),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -71,12 +72,18 @@ fun ReadOnlyRating(
         Text(
             text = "$rounded/$maxValue",
             style = sizes.textStyle.copy(fontWeight = FontWeight.Bold),
-            color = colors.noteColor
+            color = colors.noteColor,
+            modifier = Modifier.semantics {
+                text = AnnotatedString(cdProductRating.format(number, maxValue))
+            }
         )
         Text(
             text = "($nbComments)",
             style = sizes.textStyle,
-            color = colors.commentsColor
+            color = colors.commentsColor,
+            modifier = Modifier.semantics {
+                text = AnnotatedString(cdProductComments.format(nbComments))
+            }
         )
     }
 }

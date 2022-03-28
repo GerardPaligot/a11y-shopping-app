@@ -34,7 +34,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -64,7 +63,7 @@ fun QuantitySelection(
 ) {
     val actionAdd = stringResource(id = R.string.a11y_action_quantity_add)
     val actionRemove = stringResource(id = R.string.a11y_action_quantity_remove)
-    val stateMaxReached = stringResource(id = R.string.a11y_state_quantity_maximum)
+    val stateMaxReached = stringResource(id = R.string.a11y_quantity_maximum)
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,

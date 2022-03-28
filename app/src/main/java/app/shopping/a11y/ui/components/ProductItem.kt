@@ -61,8 +61,8 @@ fun ProductItem(
                 QuantitySelection(
                     quantity = product.quantity,
                     maxQuantity = product.maxQuantity,
-                    removeContentDescription = stringResource(id = R.string.a11y_state_quantity_remove),
-                    addContentDescription = stringResource(id = R.string.a11y_state_quantity_add),
+                    removeContentDescription = stringResource(id = R.string.a11y_quantity_remove),
+                    addContentDescription = stringResource(id = R.string.a11y_quantity_add),
                     onRemoveClicked = { onRemoveQuantityClicked(product.id) },
                     onAddClicked = { onAddQuantityClicked(product.id) },
                 )
