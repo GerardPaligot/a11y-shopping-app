@@ -67,7 +67,8 @@ internal fun PriceText(
             Text(
                 text = decimals,
                 style = decimalStyle,
-                color = color
+                color = color,
+                textDecoration = textDecoration
             )
             Text(
                 text = "€",
