@@ -2,10 +2,11 @@
     <string name="app_name">a11y-shopping-app</string>
     <string name="a11y_open_basket">Open basket</string>
     <string name="a11y_open_settings">Open Settings</string>
-    <string name="a11y_state_rating">Rated at %s on %s - %s comments</string>
-    <string name="a11y_state_quantity_add">Add</string>
-    <string name="a11y_state_quantity_remove">Remove</string>
-    <string name="a11y_state_quantity_maximum">Maximum reached</string>
+    <string name="a11y_product_rating">Rated at %s on %s</string>
+    <string name="a11y_product_comments">%s comments</string>
+    <string name="a11y_quantity_add">Add</string>
+    <string name="a11y_quantity_remove">Remove</string>
+    <string name="a11y_quantity_maximum">Maximum reached</string>
     <string name="a11y_action_quantity_add">to add</string>
     <string name="a11y_action_quantity_remove">to remove</string>
 </resources>
