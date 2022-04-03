@@ -10,4 +10,6 @@
     <string name="a11y_quantity_maximum">Maximum atteint</string>
     <string name="a11y_action_quantity_add">à ajouter</string>
     <string name="a11y_action_quantity_remove">à supprimer</string>
+    <string name="a11y_price">% euros</string>
+    <string name="a11y_price_strikeout">prix d\'origine: %s euros</string>
 </resources>

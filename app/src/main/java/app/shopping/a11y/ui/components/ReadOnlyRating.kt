@@ -49,9 +49,8 @@ fun ReadOnlyRating(
         textStyle = MaterialTheme.typography.caption
     ),
 ) {
-    val cdProductRating = stringResource(id = R.string.a11y_product_rating)
-    val cdProductComments = stringResource(id = R.string.a11y_product_comments)
-
+    val cdProductRating = stringResource(id = R.string.a11y_product_rating, number, maxValue)
+    val cdProductComments = stringResource(id = R.string.a11y_product_comments, nbComments)
     val rounded = number.rounded()
     Row(
         modifier = modifier
@@ -74,7 +73,7 @@ fun ReadOnlyRating(
             style = sizes.textStyle.copy(fontWeight = FontWeight.Bold),
             color = colors.noteColor,
             modifier = Modifier.semantics {
-                text = AnnotatedString(cdProductRating.format(number, maxValue))
+                text = AnnotatedString(cdProductRating)
             }
         )
         Text(
@@ -82,7 +81,7 @@ fun ReadOnlyRating(
             style = sizes.textStyle,
             color = colors.commentsColor,
             modifier = Modifier.semantics {
-                text = AnnotatedString(cdProductComments.format(nbComments))
+                text = AnnotatedString(cdProductComments)
             }
         )
     }
