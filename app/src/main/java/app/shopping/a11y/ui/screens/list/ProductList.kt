@@ -2,6 +2,7 @@ package app.shopping.a11y.ui.screens.list
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
@@ -18,9 +19,12 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import app.shopping.a11y.R
 import app.shopping.a11y.data.ProductUi
 import app.shopping.a11y.ui.components.ProductItem
 import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
@@ -70,6 +74,14 @@ fun ProductList(
                     IconButton(onClick = onSettingsClicked) {
                         Icon(imageVector = Icons.Default.Settings, contentDescription = null)
                     }
+                },
+                navigationIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.store),
+                        contentDescription = "App Logo",
+                        tint = Color.Unspecified,
+                        modifier = Modifier.size(48.dp)
+                    )
                 }
             )
         },
