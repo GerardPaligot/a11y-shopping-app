@@ -87,7 +87,7 @@ fun ProductList(
                 navigationIcon = {
                     Icon(
                         painter = painterResource(id = R.drawable.store),
-                        contentDescription = "App Logo",
+                        contentDescription = null,
                         tint = Color.Unspecified,
                         modifier = Modifier.size(48.dp)
                     )
