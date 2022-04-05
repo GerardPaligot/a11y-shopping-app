@@ -17,7 +17,10 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusOrder
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,6 +54,7 @@ fun ProductListVM(
     )
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @ExperimentalAnimationApi
 @Composable
 fun ProductList(
@@ -62,6 +66,8 @@ fun ProductList(
     onRemoveQuantityClicked: (productId: String) -> Unit,
     onAddQuantityClicked: (productId: String) -> Unit
 ) {
+    val (first, second, third) = FocusRequester.createRefs()
+
     Scaffold(
         modifier = modifier,
         backgroundColor = MaterialTheme.colors.background,
@@ -75,15 +81,18 @@ fun ProductList(
                     if (isAccessibilityEnabled) {
                         IconButton(onClick = onShoppingCartClicked) {
                             Icon(
-                                imageVector = Icons.Default.ShoppingCart, 
+                                imageVector = Icons.Default.ShoppingCart,
                                 contentDescription = stringResource(id = R.string.a11y_open_basket)
                             )
                         }
                     }
-                    IconButton(onClick = onSettingsClicked) {
+                    IconButton(
+                        onClick = onSettingsClicked
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Settings,
-                            contentDescription = stringResource(id = R.string.a11y_open_settings)
+                            contentDescription = stringResource(id = R.string.a11y_open_settings),
+                            modifier = Modifier.focusOrder(first) { down = second }
                         )
                     }
                 }
@@ -93,13 +102,17 @@ fun ProductList(
             FloatingActionButton(
                 onClick = onShoppingCartClicked,
                 backgroundColor = MaterialTheme.colors.secondary,
-                contentColor = MaterialTheme.colors.onSecondary
+                contentColor = MaterialTheme.colors.onSecondary,
+                modifier = Modifier.focusOrder(second) { down = third }
             ) {
                 Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null)
             }
         }
     ) {
-        LazyColumn(contentPadding = it) {
+        LazyColumn(
+            contentPadding = it,
+            modifier = Modifier.focusOrder(third)
+        ) {
             itemsIndexed(items = products) { index, product ->
                 ProductItem(
                     product = product,
