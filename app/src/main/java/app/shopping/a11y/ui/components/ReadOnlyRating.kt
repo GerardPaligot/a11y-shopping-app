@@ -17,11 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import app.shopping.a11y.R
 import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 import kotlin.math.floor
 import kotlin.math.roundToInt
@@ -44,6 +46,8 @@ fun ReadOnlyRating(
         textStyle = MaterialTheme.typography.caption
     ),
 ) {
+    val cdProductRating = stringResource(id = R.string.a11y_product_rating, number, maxValue)
+    val cdProductComments = stringResource(id = R.string.a11y_product_comments, nbComments)
     val rounded = number.rounded()
     Row(
         modifier = modifier.padding(sizes.contentPadding),

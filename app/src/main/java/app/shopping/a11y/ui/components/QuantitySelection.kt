@@ -34,10 +34,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import app.shopping.a11y.R
 import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 
 @ExperimentalAnimationApi
@@ -55,6 +57,13 @@ fun QuantitySelection(
     buttonShape: Shape = CircleShape,
     textStyle: TextStyle = MaterialTheme.typography.body2
 ) {
+    val cdActionAdd = stringResource(id = R.string.a11y_quantity_add)
+    val cdActionRemove = stringResource(id = R.string.a11y_quantity_remove)
+
+    val actionAdd = stringResource(id = R.string.a11y_action_quantity_add)
+    val actionRemove = stringResource(id = R.string.a11y_action_quantity_remove)
+    val stateMaxReached = stringResource(id = R.string.a11y_quantity_maximum)
+
     val emptyQuantity = quantity == 0
     val addIcon = when (quantity) {
         maxQuantity -> Icons.Default.ProductionQuantityLimits

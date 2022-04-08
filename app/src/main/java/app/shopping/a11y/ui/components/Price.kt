@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import app.shopping.a11y.R
 import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 
 @Composable
@@ -52,6 +54,8 @@ internal fun PriceText(
         alpha = if (textDecoration == null) 1f else .7f
     )
 ) {
+    val cdPrice = stringResource(id = R.string.a11y_price, price)
+    val cdStrikeout = stringResource(id = R.string.a11y_price_strikeout, price)
     val (dozen, decimals) = price.split(",")
     Row(
         modifier = modifier,
