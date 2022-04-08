@@ -33,6 +33,7 @@ import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 @Composable
 fun ProductListVM(
     modifier: Modifier = Modifier,
+    isAccessibilityEnabled: Boolean = false,
     onSettingsClicked: () -> Unit
 ) {
     val viewModel = viewModel<ProductListViewModel>()
@@ -40,6 +41,7 @@ fun ProductListVM(
     ProductList(
         products = products.value.products,
         modifier = modifier,
+        isAccessibilityEnabled = isAccessibilityEnabled,
         onSettingsClicked = onSettingsClicked,
         onShoppingCartClicked = {},
         onRemoveQuantityClicked = {
@@ -56,6 +58,7 @@ fun ProductListVM(
 fun ProductList(
     products: List<ProductUi>,
     modifier: Modifier = Modifier,
+    isAccessibilityEnabled: Boolean = false,
     onSettingsClicked: () -> Unit,
     onShoppingCartClicked: () -> Unit,
     onRemoveQuantityClicked: (productId: String) -> Unit,

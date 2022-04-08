@@ -1,6 +1,8 @@
 package app.shopping.a11y
 
+import android.content.Context
 import android.os.Bundle
+import android.view.accessibility.AccessibilityManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -24,6 +26,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // val accessibilityManager = this.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
         setContent {
             val isInDarkTheme = remember { mutableStateOf(false) }
             A11yShoppingAppTheme(darkTheme = isInDarkTheme.value) {
