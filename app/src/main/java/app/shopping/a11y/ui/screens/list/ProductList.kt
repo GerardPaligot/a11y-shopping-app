@@ -127,7 +127,7 @@ fun ProductList(
 fun ProductListPreview() {
     A11yShoppingAppTheme {
         ProductList(
-            products = ProductUi.fakes,
+            products = ProductUi.fake,
             onSettingsClicked = { /*TODO*/ },
             onShoppingCartClicked = { /*TODO*/ },
             onRemoveQuantityClicked = { /*TODO*/ },

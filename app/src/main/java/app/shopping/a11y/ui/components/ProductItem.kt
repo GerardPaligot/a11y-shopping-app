@@ -71,7 +71,7 @@ fun ProductItem(
 @Preview
 @Composable
 fun ProductItemPreview() {
-    var product by remember { mutableStateOf(ProductUi.fakes[0]) }
+    var product by remember { mutableStateOf(ProductUi.fake[0]) }
     A11yShoppingAppTheme {
         ProductItem(
             product = product,

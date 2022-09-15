@@ -16,14 +16,14 @@ data class ProductListState(
 class ProductListViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(ProductListState(
         loading = true,
-        products = ProductUi.fakes
+        products = ProductUi.fake
     ))
     val uiState: StateFlow<ProductListState> = _uiState
 
     init {
         viewModelScope.launch {
             delay(1000)
-            _uiState.value = ProductListState(loading = false, products = ProductUi.fakes)
+            _uiState.value = ProductListState(loading = false, products = ProductUi.fake)
         }
     }
 
