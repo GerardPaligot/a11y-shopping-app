@@ -13,7 +13,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "app.shopping.a11y"
+        applicationId = "app.shopping.a11yok"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
