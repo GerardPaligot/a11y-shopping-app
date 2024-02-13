@@ -9,7 +9,7 @@ data class ProductUi(
     val quantity: Int,
     val maxQuantity: Int,
     val price: String,
-    val priceStrikeout: String?
+    val priceStrikeout: String?,
 ) {
     companion object {
         private val english = arrayListOf(
@@ -22,7 +22,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "0,95",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "5902884463139",
@@ -33,7 +33,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,89",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "7613035144699",
@@ -44,7 +44,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "2,99"
+                priceStrikeout = "2,99",
             ),
             ProductUi(
                 id = "4008713756661",
@@ -55,7 +55,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "2,79",
-                priceStrikeout = "2,99"
+                priceStrikeout = "2,99",
             ),
             ProductUi(
                 id = "20003166",
@@ -66,7 +66,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "0,95",
-                priceStrikeout = "1,95"
+                priceStrikeout = "1,95",
             ),
             ProductUi(
                 id = "5010477354051",
@@ -77,7 +77,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "3,69",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "3229820116716",
@@ -88,7 +88,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "3,69",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "3229820129488",
@@ -99,7 +99,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 10,
                 price = "2,59",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "5010477348678",
@@ -110,7 +110,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "2,69",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "3229820019307",
@@ -121,7 +121,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "3,89",
-                priceStrikeout = "4,51"
+                priceStrikeout = "4,51",
             ),
             ProductUi(
                 id = "3229820782560",
@@ -132,7 +132,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "2,49",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "5010029220773",
@@ -143,7 +143,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "2,49",
-                priceStrikeout = "3,59"
+                priceStrikeout = "3,59",
             ),
         )
         private val french = arrayListOf(
@@ -156,7 +156,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5010477348678",
@@ -167,7 +167,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 9,
                 price = "4,99",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "3229820019307",
@@ -178,7 +178,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "3,99",
-                priceStrikeout = null
+                priceStrikeout = null,
             ),
             ProductUi(
                 id = "3229820782560",
@@ -189,7 +189,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "2,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5010029220773",
@@ -200,7 +200,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "4008713756661",
@@ -211,7 +211,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "20003166",
@@ -222,7 +222,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5010477354051",
@@ -233,7 +233,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "3229820116716",
@@ -244,7 +244,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "7613035144699",
@@ -255,7 +255,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5902884463139",
@@ -266,7 +266,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "3168930003632",
@@ -277,7 +277,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "3229820794549",
@@ -288,7 +288,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "3229820794556",
@@ -299,7 +299,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "40897677",
@@ -310,7 +310,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "7613036668910",
@@ -321,7 +321,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "3229820796451",
@@ -332,7 +332,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5010477356277",
@@ -343,7 +343,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5010477357335",
@@ -354,7 +354,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "3421557910203",
@@ -365,7 +365,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "3270190136835",
@@ -376,7 +376,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "20621469",
@@ -387,7 +387,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5010029201246",
@@ -398,7 +398,7 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
+                priceStrikeout = "3,99",
             ),
             ProductUi(
                 id = "5010029000061",
@@ -409,9 +409,9 @@ data class ProductUi(
                 quantity = 0,
                 maxQuantity = 5,
                 price = "1,99",
-                priceStrikeout = "3,99"
-            )
+                priceStrikeout = "3,99",
+            ),
         )
-        val fake = english
+        val fake = french
     }
 }
