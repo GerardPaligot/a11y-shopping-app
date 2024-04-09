@@ -35,24 +35,24 @@ fun ProductItem(
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         AsyncImage(
             model = product.url,
             contentDescription = "Product Image",
             placeholder = painterResource(id = R.drawable.placeholder),
-            modifier = Modifier.size(80.dp)
+            modifier = Modifier.size(80.dp),
         )
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(text = product.name)
             Box(
                 modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.CenterEnd
+                contentAlignment = Alignment.CenterEnd,
             ) {
                 ReadOnlyRating(number = product.rating, nbComments = product.nbComments)
             }
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Price(price = product.price, priceStrikeout = product.priceStrikeout)
                 Spacer(modifier = Modifier.weight(1f))
@@ -80,7 +80,7 @@ fun ProductItemPreview() {
             },
             onRemoveQuantityClicked = {
                 product = product.copy(quantity = product.quantity - 1)
-            }
+            },
         )
     }
 }

@@ -37,13 +37,13 @@ fun ReadOnlyRating(
     colors: RatingsColors = RatingsColors(
         starColor = MaterialTheme.colors.onBackground,
         noteColor = MaterialTheme.colors.onBackground.copy(alpha = .7f),
-        commentsColor = MaterialTheme.colors.onBackground.copy(alpha = .7f)
+        commentsColor = MaterialTheme.colors.onBackground.copy(alpha = .7f),
     ),
     sizes: RatingsSizes = RatingsSizes(
         starSize = 16.dp,
         contentPadding = 0.dp,
         spaceBetween = 4.dp,
-        textStyle = MaterialTheme.typography.caption
+        textStyle = MaterialTheme.typography.caption,
     ),
 ) {
     val cdProductRating = stringResource(id = R.string.a11y_product_rating, number, maxValue)
@@ -52,37 +52,37 @@ fun ReadOnlyRating(
     Row(
         modifier = modifier.padding(sizes.contentPadding),
         horizontalArrangement = Arrangement.spacedBy(sizes.spaceBetween),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         (0 until maxValue).forEach {
             Icon(
                 imageVector = getStarIcon(it, number),
-                contentDescription = null,
+                contentDescription = stringResource(R.string.a11y_star),
                 tint = colors.starColor,
                 modifier = Modifier
-                    .size(size = sizes.starSize)
+                    .size(size = sizes.starSize),
             )
         }
         Text(
             text = "$rounded/$maxValue",
             style = sizes.textStyle.copy(fontWeight = FontWeight.Bold),
-            color = colors.noteColor
+            color = colors.noteColor,
         )
         Text(
             text = "($nbComments)",
             style = sizes.textStyle,
-            color = colors.commentsColor
+            color = colors.commentsColor,
         )
     }
 }
 
 @Preview
 @Composable
-fun ReadOnlyRating() {
+fun ReadOnlyRatingPreview() {
     A11yShoppingAppTheme {
         ReadOnlyRating(
             number = 4.4f,
-            nbComments = 42
+            nbComments = 42,
         )
     }
 }
@@ -91,7 +91,7 @@ fun ReadOnlyRating() {
 class RatingsColors(
     val starColor: Color,
     val noteColor: Color,
-    val commentsColor: Color
+    val commentsColor: Color,
 )
 
 @Stable
@@ -99,7 +99,7 @@ class RatingsSizes(
     val starSize: Dp,
     val contentPadding: Dp,
     val spaceBetween: Dp,
-    val textStyle: TextStyle
+    val textStyle: TextStyle,
 )
 
 fun Float.rounded(rounded: Float = 10.0f): Float = (this * rounded).roundToInt() / rounded
