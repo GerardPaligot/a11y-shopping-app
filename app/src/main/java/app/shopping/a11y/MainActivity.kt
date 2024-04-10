@@ -7,10 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
@@ -26,7 +24,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // val accessibilityManager = this.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+        val accessibilityManager = this.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+        val isScreenReaderEnabled: Boolean = accessibilityManager.isEnabled && accessibilityManager.isTouchExplorationEnabled
         setContent {
             val isInDarkTheme = remember { mutableStateOf(false) }
             A11yShoppingAppTheme(darkTheme = isInDarkTheme.value) {
@@ -36,11 +35,11 @@ class MainActivity : ComponentActivity() {
                 SideEffect {
                     systemUiController.setSystemBarsColor(
                         color = navBarColor,
-                        darkIcons = useDarkIcons
+                        darkIcons = useDarkIcons,
                     )
                     systemUiController.setNavigationBarColor(
                         color = navBarColor,
-                        darkIcons = useDarkIcons
+                        darkIcons = useDarkIcons,
                     )
                 }
                 val navController = rememberNavController()
@@ -49,7 +48,8 @@ class MainActivity : ComponentActivity() {
                         ProductListVM(
                             onSettingsClicked = {
                                 navController.navigate("settings")
-                            }
+                            },
+                            isAccessibilityEnabled = isScreenReaderEnabled
                         )
                     }
                     composable(route = "settings") {
@@ -60,7 +60,7 @@ class MainActivity : ComponentActivity() {
                             },
                             onDarkThemeClicked = {
                                 isInDarkTheme.value = !isInDarkTheme.value
-                            }
+                            },
                         )
                     }
                 }

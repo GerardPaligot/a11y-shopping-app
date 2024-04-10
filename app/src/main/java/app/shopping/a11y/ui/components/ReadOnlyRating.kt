@@ -18,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -57,7 +60,7 @@ fun ReadOnlyRating(
         (0 until maxValue).forEach {
             Icon(
                 imageVector = getStarIcon(it, number),
-                contentDescription = stringResource(R.string.a11y_star),
+                contentDescription = null,
                 tint = colors.starColor,
                 modifier = Modifier
                     .size(size = sizes.starSize),
@@ -67,11 +70,17 @@ fun ReadOnlyRating(
             text = "$rounded/$maxValue",
             style = sizes.textStyle.copy(fontWeight = FontWeight.Bold),
             color = colors.noteColor,
+            modifier = Modifier.semantics {
+                text = AnnotatedString(cdProductRating)
+            },
         )
         Text(
             text = "($nbComments)",
             style = sizes.textStyle,
             color = colors.commentsColor,
+            modifier = Modifier.semantics {
+                text = AnnotatedString(cdProductComments)
+            },
         )
     }
 }

@@ -8,9 +8,10 @@
     <string name="a11y_product_rating">Noté à %s sur %s</string>
     <string name="a11y_product_comments">%s commentaires</string>
     <string name="a11y_quantity_maximum">Maximum atteint</string>
-    <string name="a11y_action_quantity_add">à ajouter</string>
-    <string name="a11y_action_quantity_remove">à supprimer</string>
+    <string name="a11y_action_quantity_add">ajouter %s</string>
+    <string name="a11y_action_quantity_remove">supprimer %s</string>
     <string name="a11y_price">%s euros</string>
     <string name="a11y_price_strikeout">prix d\'origine: %s euros</string>
     <string name="a11y_star">étoile</string>
+
 </resources>

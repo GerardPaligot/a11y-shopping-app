@@ -11,13 +11,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import app.shopping.a11y.R
-import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 
 @Composable
 fun Price(
@@ -26,9 +29,9 @@ fun Price(
     priceStrikeout: String? = null,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.semantics(true) {},
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.Bottom
+        verticalAlignment = Alignment.Bottom,
     ) {
         PriceText(price = price)
         if (priceStrikeout != null) {
@@ -37,7 +40,7 @@ fun Price(
                 textDecoration = TextDecoration.LineThrough,
                 dozenStyle = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
                 decimalStyle = MaterialTheme.typography.overline.copy(fontWeight = FontWeight.Bold),
-                modifier = Modifier.padding(bottom = 3.dp)
+                modifier = Modifier.padding(bottom = 3.dp),
             )
         }
     }
@@ -51,33 +54,39 @@ internal fun PriceText(
     dozenStyle: TextStyle = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold),
     decimalStyle: TextStyle = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold),
     color: Color = MaterialTheme.colors.onBackground.copy(
-        alpha = if (textDecoration == null) 1f else .7f
-    )
+        alpha = if (textDecoration == null) 1f else .7f,
+    ),
 ) {
     val cdPrice = stringResource(id = R.string.a11y_price, price)
     val cdStrikeout = stringResource(id = R.string.a11y_price_strikeout, price)
     val (dozen, decimals) = price.split(",")
     Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        modifier = modifier.clearAndSetSemantics {
+            text = if (textDecoration == TextDecoration.LineThrough) {
+                AnnotatedString(cdStrikeout)
+            } else {
+                AnnotatedString(cdPrice)
+            }
+        },
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = dozen,
             style = dozenStyle,
             color = color,
-            textDecoration = textDecoration
+            textDecoration = textDecoration,
         )
         Column {
             Text(
                 text = decimals,
                 style = decimalStyle,
                 color = color,
-                textDecoration = textDecoration
+                textDecoration = textDecoration,
             )
             Text(
                 text = "€",
                 style = decimalStyle,
-                color = color
+                color = color,
             )
         }
     }
@@ -86,10 +95,8 @@ internal fun PriceText(
 @Preview
 @Composable
 fun PricePreview() {
-    A11yShoppingAppTheme {
-        Column {
-            Price(price = "9.99")
-            Price(price = "9.99", priceStrikeout = "14.99")
-        }
+    Column {
+        Price(price = "9,99")
+        Price(price = "9,99", priceStrikeout = "14,99")
     }
 }

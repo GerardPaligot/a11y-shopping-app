@@ -24,7 +24,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ProductionQuantityLimits
 import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,6 +34,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,6 +47,7 @@ import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 @ExperimentalAnimationApi
 @Composable
 fun QuantitySelection(
+    productName: String,
     quantity: Int,
     maxQuantity: Int,
     onRemoveClicked: () -> Unit,
@@ -52,16 +55,16 @@ fun QuantitySelection(
     modifier: Modifier = Modifier,
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(
         backgroundColor = MaterialTheme.colors.primary,
-        contentColor = MaterialTheme.colors.onPrimary
+        contentColor = MaterialTheme.colors.onPrimary,
     ),
     buttonShape: Shape = CircleShape,
-    textStyle: TextStyle = MaterialTheme.typography.body2
+    textStyle: TextStyle = MaterialTheme.typography.body2,
 ) {
     val cdActionAdd = stringResource(id = R.string.a11y_quantity_add)
     val cdActionRemove = stringResource(id = R.string.a11y_quantity_remove)
 
-    val actionAdd = stringResource(id = R.string.a11y_action_quantity_add)
-    val actionRemove = stringResource(id = R.string.a11y_action_quantity_remove)
+    val actionAdd = stringResource(id = R.string.a11y_action_quantity_add, productName)
+    val actionRemove = stringResource(id = R.string.a11y_action_quantity_remove, productName)
     val stateMaxReached = stringResource(id = R.string.a11y_quantity_maximum)
 
     val emptyQuantity = quantity == 0
@@ -72,34 +75,46 @@ fun QuantitySelection(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         AnimatedVisibility(visible = !emptyQuantity) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 QuantityIconButton(
                     imageVector = Icons.Default.Remove,
-                    contentDescription = null,
+                    contentDescription = cdActionRemove,
                     onClick = onRemoveClicked,
                     colors = buttonColors,
                     shape = buttonShape,
-                    enabled = quantity > 0
+                    enabled = quantity > 0,
+                    modifier = Modifier.semantics {
+                        stateDescription = "$quantity"
+                        onClick(label = actionRemove, action = null)
+                    },
                 )
                 QuantityText(
                     quantity = quantity,
-                    style = textStyle
+                    style = textStyle,
                 )
             }
         }
         QuantityIconButton(
             imageVector = addIcon,
-            contentDescription = null,
+            contentDescription = cdActionAdd,
             onClick = onAddClicked,
             colors = buttonColors,
             shape = buttonShape,
-            enabled = quantity < maxQuantity
+            enabled = quantity < maxQuantity,
+            modifier = Modifier.semantics {
+                stateDescription = if (quantity == maxQuantity) {
+                    "$quantity $stateMaxReached"
+                } else {
+                    "$quantity"
+                }
+                onClick(label = actionAdd, action = null)
+            },
         )
     }
 }
@@ -113,7 +128,7 @@ internal fun QuantityIconButton(
     colors: ButtonColors,
     shape: Shape,
     enabled: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     IconButton(
         onClick = onClick,
@@ -121,8 +136,8 @@ internal fun QuantityIconButton(
         modifier = modifier
             .background(
                 color = colors.backgroundColor(enabled = enabled).value,
-                shape = shape
-            )
+                shape = shape,
+            ),
     ) {
         AnimatedContent(
             targetState = imageVector,
@@ -130,7 +145,7 @@ internal fun QuantityIconButton(
             Icon(
                 imageVector = targetImageVector,
                 contentDescription = contentDescription,
-                tint = colors.contentColor(enabled = enabled).value
+                tint = colors.contentColor(enabled = enabled).value,
             )
         }
     }
@@ -141,29 +156,29 @@ internal fun QuantityIconButton(
 internal fun QuantityText(
     quantity: Int,
     style: TextStyle,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     AnimatedContent(
         targetState = quantity,
         transitionSpec = {
             if (targetState > initialState) {
                 slideInVertically { height -> height } + fadeIn() with
-                        slideOutVertically { height -> -height } + fadeOut()
+                    slideOutVertically { height -> -height } + fadeOut()
             } else {
                 slideInVertically { height -> -height } + fadeIn() with
-                        slideOutVertically { height -> height } + fadeOut()
+                    slideOutVertically { height -> height } + fadeOut()
             }.using(
-                SizeTransform(clip = false)
+                SizeTransform(clip = false),
             )
         },
-        modifier = modifier
+        modifier = modifier,
     ) { targetQuantity ->
         Text(
             text = "$targetQuantity",
             style = style,
             maxLines = 1,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(width = 32.dp)
+            modifier = Modifier.width(width = 32.dp),
         )
     }
 }
@@ -175,6 +190,7 @@ fun QuantitySelectionPreview() {
     var quantityState by remember { mutableStateOf(0) }
     A11yShoppingAppTheme {
         QuantitySelection(
+            productName = "TOTO",
             quantity = quantityState,
             maxQuantity = 5,
             onAddClicked = {
@@ -182,7 +198,7 @@ fun QuantitySelectionPreview() {
             },
             onRemoveClicked = {
                 quantityState--
-            }
+            },
         )
     }
 }

@@ -7,8 +7,8 @@
     <string name="a11y_quantity_add">Add</string>
     <string name="a11y_quantity_remove">Remove</string>
     <string name="a11y_quantity_maximum">Maximum reached</string>
-    <string name="a11y_action_quantity_add">to add</string>
-    <string name="a11y_action_quantity_remove">to remove</string>
+    <string name="a11y_action_quantity_add">to add %s</string>
+    <string name="a11y_action_quantity_remove">to remove %s</string>
     <string name="a11y_price">%s euros</string>
     <string name="a11y_price_strikeout">original price: %s euros</string>
     <string name="a11y_star">star</string>

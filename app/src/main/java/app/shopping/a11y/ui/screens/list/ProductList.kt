@@ -15,6 +15,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingBasket
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -22,6 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.CollectionInfo
+import androidx.compose.ui.semantics.CollectionItemInfo
+import androidx.compose.ui.semantics.collectionInfo
+import androidx.compose.ui.semantics.collectionItemInfo
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -35,7 +42,7 @@ import app.shopping.a11y.ui.theme.A11yShoppingAppTheme
 fun ProductListVM(
     modifier: Modifier = Modifier,
     isAccessibilityEnabled: Boolean = false,
-    onSettingsClicked: () -> Unit
+    onSettingsClicked: () -> Unit,
 ) {
     val viewModel = viewModel<ProductListViewModel>()
     val products = viewModel.uiState.collectAsState()
@@ -50,7 +57,7 @@ fun ProductListVM(
         },
         onAddQuantityClicked = {
             viewModel.addQuantity(it)
-        }
+        },
     )
 }
 
@@ -63,7 +70,7 @@ fun ProductList(
     onSettingsClicked: () -> Unit,
     onShoppingCartClicked: () -> Unit,
     onRemoveQuantityClicked: (productId: String) -> Unit,
-    onAddQuantityClicked: (productId: String) -> Unit
+    onAddQuantityClicked: (productId: String) -> Unit,
 ) {
     val cdOpenSettings = stringResource(id = R.string.a11y_open_settings)
     val cdOpenBasket = stringResource(id = R.string.a11y_open_basket)
@@ -77,43 +84,57 @@ fun ProductList(
                 backgroundColor = MaterialTheme.colors.surface,
                 contentColor = MaterialTheme.colors.onSurface,
                 actions = {
+                    if (isAccessibilityEnabled) {
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(imageVector = Icons.Default.ShoppingBasket, contentDescription = cdOpenBasket)
+                        }
+                    }
                     IconButton(onClick = onSettingsClicked) {
-                        Icon(imageVector = Icons.Default.Settings, contentDescription = null)
+                        Icon(imageVector = Icons.Default.Settings, contentDescription = cdOpenSettings)
                     }
                 },
                 navigationIcon = {
                     Icon(
                         painter = painterResource(id = R.drawable.store),
-                        contentDescription = "App Logo",
+                        contentDescription = null,
                         tint = Color.Unspecified,
-                        modifier = Modifier.size(48.dp)
+                        modifier = Modifier.size(48.dp).semantics {
+                            heading()
+                        },
                     )
-                }
+                },
             )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onShoppingCartClicked,
                 backgroundColor = MaterialTheme.colors.secondary,
-                contentColor = MaterialTheme.colors.onSecondary
+                contentColor = MaterialTheme.colors.onSecondary,
             ) {
                 Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = null)
             }
-        }
+        },
     ) {
-        LazyColumn(contentPadding = it) {
+        LazyColumn(
+            modifier = Modifier.semantics {
+                collectionInfo = CollectionInfo(products.count(), 1)
+            },
+            contentPadding = it,
+        ) {
             itemsIndexed(items = products) { index, product ->
                 ProductItem(
                     product = product,
                     onRemoveQuantityClicked = onRemoveQuantityClicked,
                     onAddQuantityClicked = onAddQuantityClicked,
-                    modifier = Modifier.padding(horizontal = 8.dp)
+                    modifier = Modifier.padding(horizontal = 8.dp).semantics {
+                        collectionItemInfo = CollectionItemInfo(rowIndex = index, rowSpan = 3, columnIndex = 1, columnSpan = 1)
+                    },
                 )
                 if (index < products.lastIndex) {
                     Divider(
                         color = MaterialTheme.colors.onBackground.copy(alpha = .3f),
                         thickness = 0.5.dp,
-                        modifier = Modifier.padding(vertical = 8.dp)
+                        modifier = Modifier.padding(vertical = 8.dp),
                     )
                 }
             }
@@ -131,7 +152,7 @@ fun ProductListPreview() {
             onSettingsClicked = { /*TODO*/ },
             onShoppingCartClicked = { /*TODO*/ },
             onRemoveQuantityClicked = { /*TODO*/ },
-            onAddQuantityClicked = { /*TODO*/ }
+            onAddQuantityClicked = { /*TODO*/ },
         )
     }
 }
